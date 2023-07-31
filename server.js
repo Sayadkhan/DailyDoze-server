@@ -1,6 +1,8 @@
 require("dotenv").config();
 
 const express = require("express");
+
+const mongoose = require("mongoose");
 const todoRoutes = require("./routes/todu.route");
 
 // express app
@@ -19,6 +21,14 @@ app.use((req, res, next) => {
 // routes
 app.use("/todo", todoRoutes);
 
-app.listen(port, () => {
-  console.log(`lisingt on port ${port}`);
-});
+// mongoDB
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`lisingt on port ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
