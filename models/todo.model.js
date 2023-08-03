@@ -16,11 +16,6 @@ const todoSchema = new Schema(
       type: Number,
       required: true,
     },
-
-    time: {
-      type: Number,
-      required: true,
-    },
   },
   {
     timestamps: true,
